@@ -23,7 +23,7 @@ export const camera = new THREE.PerspectiveCamera(
 	0.1,
 	1000
 );
-camera.position.set(0, 40, 100);
+camera.position.set(0, 2, 20);
 // controls
 export const controls = new THREE.OrbitControls(camera, renderer.domElement);
 // axis helper
@@ -43,7 +43,7 @@ spotLight.decay = 2;
 spotLight.penumbra = 0.9;
 scene.add(spotLight);
 const spotLightHelper = new THREE.SpotLightHelper(spotLight);
-scene.add(spotLightHelper);
+// scene.add(spotLightHelper);
 
 const spotLight2 = new THREE.SpotLight(0x88aa88);
 spotLight2.angle = 25 * (Math.PI / 180);
@@ -53,7 +53,7 @@ spotLight2.decay = 2;
 spotLight2.penumbra = 0.9;
 scene.add(spotLight2);
 const spotLightHelper2 = new THREE.SpotLightHelper(spotLight2);
-scene.add(spotLightHelper2);
+// scene.add(spotLightHelper2);
 
 const handleResize = () => {
 	camera.aspect = window.innerWidth / window.innerHeight;

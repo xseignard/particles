@@ -4,18 +4,19 @@ import './main.css';
 
 import vertexShader from './shaders/vertex.glsl';
 import fragmentShader from './shaders/fragment.glsl';
-import logo from './img/bricks.jpg';
+import logo from './img/bird.jpg';
 
-const radius = 2;
-const particles = 600000;
+const radiusX = 10; //5.34;
+const radiusY = 10;
+const particles = radiusX * radiusY * 5000;
 const geometry = new THREE.BufferGeometry();
 const positions = new Float32Array(particles * 3);
 const colors = new Float32Array(particles * 3);
 const sizes = new Float32Array(particles);
 const color = new THREE.Color();
 for (let i = 0; i < particles; i += 3) {
-	positions[i + 0] = (Math.random() * 2 - 1) * radius;
-	positions[i + 1] = (Math.random() * 2 - 1) * radius;
+	positions[i + 0] = (Math.random() * 2 - 1) * radiusX;
+	positions[i + 1] = (Math.random() * 2 - 1) * radiusY;
 	positions[i + 2] = 0;
 }
 geometry.addAttribute('position', new THREE.BufferAttribute(positions, 3));

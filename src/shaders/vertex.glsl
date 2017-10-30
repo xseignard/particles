@@ -16,9 +16,10 @@ void main() {
 	float pickX = (position.x + offsetX) / rangeX;
 	float pickY = (position.y + offsetY) / rangeY;
 	vColor = texture2D(texture, vec2(pickX, pickY));
+	vec3 hsv = rgb2hsv(vColor.xyz);
 
 	vec3 newPos = position;
-	// newPos.z += noise(position.x) * 10.0 * sin(time * 0.0005);
+	newPos.z += hsv.z * 10.0 * abs(sin(time * 0.0005));
 
 	gl_PointSize = 1.0;
 	gl_Position = projectionMatrix * modelViewMatrix * vec4(newPos, 1.0);;
