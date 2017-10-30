@@ -6,26 +6,27 @@ import vertexShader from './shaders/vertex.glsl';
 import fragmentShader from './shaders/fragment.glsl';
 import logo from './img/bird.jpg';
 
-const radiusX = 10; //5.34;
+// to keep image proportions
+const radiusX = 10;
 const radiusY = 10;
+// number of particles
 const particles = radiusX * radiusY * 5000;
 const geometry = new THREE.BufferGeometry();
+// fill postions with random postions inside the boundaries
 const positions = new Float32Array(particles * 3);
-const colors = new Float32Array(particles * 3);
-const sizes = new Float32Array(particles);
-const color = new THREE.Color();
 for (let i = 0; i < particles; i += 3) {
 	positions[i + 0] = (Math.random() * 2 - 1) * radiusX;
 	positions[i + 1] = (Math.random() * 2 - 1) * radiusY;
 	positions[i + 2] = 0;
 }
 geometry.addAttribute('position', new THREE.BufferAttribute(positions, 3));
-
+// get the bounding box of the geometry
 geometry.computeBoundingBox();
 const max = geometry.boundingBox.max;
 const min = geometry.boundingBox.min;
-console.log(max, min);
 
+// shader material
+// uniforms : the same for each vertice during ONE render loop
 const uniforms = {
 	texture: { value: new THREE.TextureLoader().load(logo) },
 	boundingMin: { value: min },
@@ -41,26 +42,16 @@ const shaderMaterial = new THREE.ShaderMaterial({
 	transparent: true,
 });
 
+// create the particle system
 const particleSystem = new THREE.Points(geometry, shaderMaterial);
 scene.add(particleSystem);
-
-// post processing
-// const composer = new THREE.EffectComposer(renderer);
-//
-// const renderPass = new THREE.RenderPass(scene, camera);
-// const grainPass = new THREE.ShaderPass(THREE.FilmShader);
-// grainPass.renderToScreen = true;
-// grainPass.uniforms['grayscale'] = false;
-//
-// composer.addPass(renderPass);
-// composer.addPass(grainPass);
 
 const animate = timestamp => {
 	requestAnimationFrame(animate);
 	stats.begin();
+	// update the time uniform
 	uniforms.time.value = timestamp;
 	renderer.render(scene, camera);
-	// composer.render();
 	stats.end();
 };
 animate();
