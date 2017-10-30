@@ -30,7 +30,7 @@ export const controls = new THREE.OrbitControls(camera, renderer.domElement);
 
 // axis helper
 const axisHelper = new THREE.AxisHelper(100);
-scene.add(axisHelper);
+// scene.add(axisHelper);
 
 // light
 const light = new THREE.AmbientLight(0x888888);
