@@ -19,7 +19,7 @@ void main() {
 	vec3 hsv = rgb2hsv(vColor.xyz);
 
 	vec3 newPos = position;
-	newPos.z += hsv.z * 10.0 * abs(sin(time * 0.0005));
+	newPos.z += hsv.z * 10.0 * abs(sin(time * 0.00005));
 
 	gl_PointSize = 1.0;
 	gl_Position = projectionMatrix * modelViewMatrix * vec4(newPos, 1.0);;
