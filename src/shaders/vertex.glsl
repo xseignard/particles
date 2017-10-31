@@ -30,7 +30,7 @@ void main() {
 	vec3 newPos = position;
 	newPos.z += hsv.z * 6.0 * abs(sin(time * 0.00005));
 	// size of the particle
-	gl_PointSize = 1.0;
+	gl_PointSize = 1.7;
 	// position of the particle
 	gl_Position = projectionMatrix * modelViewMatrix * vec4(newPos, 1.0);;
 }
