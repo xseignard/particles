@@ -33,7 +33,7 @@ const axisHelper = new THREE.AxisHelper(100);
 // scene.add(axisHelper);
 
 // light
-const light = new THREE.AmbientLight(0x888888);
+const light = new THREE.AmbientLight(0xffffff);
 scene.add(light);
 
 const handleResize = () => {
