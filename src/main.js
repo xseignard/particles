@@ -9,8 +9,13 @@ import logo from './img/bird.jpg';
 // to keep image proportions
 const radiusX = 10;
 const radiusY = 10;
-// number of particles
-const particles = radiusX * radiusY * 5000;
+// number of particles (500 000 on desktop)
+let factor = 5000;
+if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+	// (100 000 on mobile)
+	factor = 1000;
+}
+const particles = radiusX * radiusY * factor;
 const geometry = new THREE.BufferGeometry();
 // fill postions with random postions inside the boundaries
 const positions = new Float32Array(particles * 3);
